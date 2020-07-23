@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>readingList</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+    <h2>Your Reading List</h2>
+    <div th:unless= "${#lists.isEmpty{books}}">
+        <dl th:each="book : ${books}">
+           <dt class ="bookHeadline">
+rw312231
+           </dt >
+        </dl>
+    </div>
+</body>
+</html>
