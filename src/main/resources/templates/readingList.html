@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +10,32 @@
     <div th:unless= "${#lists.isEmpty{books}}">
         <dl th:each="book : ${books}">
            <dt class ="bookHeadline">
-rw312231
+                <span th:text="${book.title}">Title</span>by
+                <span th:text="${book.author}">Author</span>
+                (ISBN:<span th:text="${book.isbn}">ISBN</span>)
            </dt >
+           <dd class="bookDescription">
+               <span th:if="${book.description}"
+                     th:text="${book.description}">Description</span>
+               <span th:if="${book.description eq null}">No description available</span>
+
+           </dd>
         </dl>
     </div>
+    <div th:if="${#lists.isEmpty(books)}">
+        <p>You have no books in your book List</p>
+    </div><hr>
+    <h3>Add a  book</h3>
+    <form> action="POST">
+        <label for="title">Title:</label><br>
+    <input type="text" name="title" size="50"><br>
+        <label for="author">Author:</label><br>
+    <input type="text" name="author" size="50"><br>
+        <label for="isbn">ISBN:</label><br>
+    <input type="text" name="isbn" size="15"><br>
+        <label for="description">Description:</label><br>
+        <textarea name="description"  cols="80" rows="5"></textarea><br>
+    <input type="submit">
+    </form>
 </body>
 </html>
